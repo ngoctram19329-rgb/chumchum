@@ -1,69 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Locket Gold - Chum Chum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locket Gold Vĩnh Viễn</title>
+
 <style>
 body {
-  font-family: Arial;
-  background: #f5f5f5;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#000,#111);
+  color: white;
+}
+
+.header {
   text-align: center;
-  padding: 30px;
+  padding: 30px 20px;
 }
-.box {
-  background: white;
+
+.header h1 {
+  font-size: 32px;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.sub {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.container {
   padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: auto;
 }
-input, button {
-  width: 90%;
-  padding: 10px;
-  margin: 8px 0;
+
+.card {
+  background: #1a1a1a;
+  border: 1px solid gold;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
-button {
-  background: gold;
-  border: none;
+
+.card h2 {
+  margin: 0 0 10px;
+  color: gold;
+}
+
+.price {
+  font-size: 24px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
-.qr {
-  margin-top: 20px;
-  background: #fafafa;
-  padding: 15px;
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
   border-radius: 8px;
+  background: gold;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.features {
+  padding: 20px;
+  border-top: 1px solid #333;
+}
+
+.features p {
+  margin: 6px 0;
+  color: #ccc;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #333;
+  color: #aaa;
 }
 </style>
 </head>
+
 <body>
 
-<div class="box">
-<h2>Locket Gold</h2>
-<p>Giá: 199.000đ</p>
-
-<input type="text" id="name" placeholder="Tên của bạn">
-<input type="text" id="phone" placeholder="Số điện thoại">
-
-<button onclick="order()">Đặt hàng</button>
-
-<div class="qr" id="payment" style="display:none;">
-  <h3>Chuyển khoản MoMo</h3>
-  <p>SĐT: 0346658742</p>
-  <p>Tên: TRAN THI NGOC TRAM</p>
-  <p>Nội dung: LocketGold + SĐT</p>
-  <p>Sau khi chuyển khoản, bạn chờ xác nhận nhé.</p>
+<div class="header">
+  <h1>Locket Gold Vĩnh Viễn</h1>
+  <div class="sub">Không đụng iCloud • Bảo hành trọn đời • Kích hoạt nhanh</div>
 </div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>iOS - Bật VPN</h2>
+    <div class="price">30.000đ</div>
+    <button onclick="order('iOS - Bật VPN 30K')">Mua ngay</button>
+  </div>
+
+  <div class="card">
+    <h2>iOS - Tắt VPN</h2>
+    <div class="price">40.000đ</div>
+    <button onclick="order('iOS - Tắt VPN 40K')">Mua ngay</button>
+  </div>
+
+  <div class="card">
+    <h2>Android</h2>
+    <div class="price">20.000đ</div>
+    <button onclick="order('Android 20K')">Mua ngay</button>
+  </div>
+
+</div>
+
+<div class="features">
+  <p>✔ Lên Gold vĩnh viễn</p>
+  <p>✔ Không liên quan iCloud</p>
+  <p>✔ Bảo hành vĩnh viễn</p>
+  <p>✔ Hỗ trợ Zalo: 0346658742</p>
+</div>
+
+<div class="footer">
+  © 2026 Locket Gold
 </div>
 
 <script>
-function order() {
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
+function order(product) {
+  const name = prompt("Nhập tên của bạn:");
+  const phone = prompt("Nhập số điện thoại:");
 
   if (!name || !phone) {
     alert("Vui lòng nhập đầy đủ thông tin");
     return;
   }
+
+  const content = phone + " GOLD";
+
+  alert(
+    "THANH TOÁN TRƯỚC QUA MOMO\n\n" +
+    "Ví MoMo: 0346658742\n" +
+    "Chủ ví: TRAN THI NGOC TRAM\n\n" +
+    "Nội dung chuyển khoản: " + content + "\n\n" +
+    "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ xác nhận."
+  );
 
   fetch("https://chumchum-backend.onrender.com/create-order", {
     method: "POST",
@@ -71,13 +147,14 @@ function order() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      username: name,
-      product: "Locket Gold"
+      name: name,
+      phone: phone,
+      product: product,
+      status: "cho_duyet"
     })
   })
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("payment").style.display = "block";
+  .then(() => {
+    alert("Đơn hàng đã được ghi nhận. Admin sẽ liên hệ sau khi xác nhận thanh toán.");
   });
 }
 </script>
