@@ -261,11 +261,22 @@ let selectedPrice = 0;
 function showForm(product, price) {
   selectedProduct = product;
   selectedPrice = price;
-  document.getElementById("orderForm").style.display = "block";
+  const form = document.getElementById("orderForm");
+  if (form) {
+    form.style.display = "block";
+  }
 }
 
 function submitOrder() {
-  alert("Submit hoạt động");
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+
+  if (!name || !phone) {
+    alert("Nhập đủ thông tin");
+    return;
+  }
+
+  alert("Form hoạt động bình thường");
 }
 </script>
 </body>
