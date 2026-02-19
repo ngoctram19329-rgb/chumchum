@@ -275,20 +275,23 @@ async function submitOrder() {
 
   const orderId = generateOrderId();
 
-  // GỬI LÊN BACKEND
-  await fetch("https://chumchum-backend.onrender.com/create-order", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      orderId: orderId,
-      name: name,
-      phone: phone,
-      product: selectedProduct,
-      price: selectedPrice
-    })
-  });
+  try {
+    await fetch("https://chumchum-backend.onrender.com/create-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        orderId: orderId,
+        name: name,
+        phone: phone,
+        product: selectedProduct,
+        price: selectedPrice
+      })
+    });
+  } catch (err) {
+    console.log("Backend lỗi hoặc chưa deploy");
+  }
 
   const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${phone}`;
 
@@ -301,22 +304,5 @@ async function submitOrder() {
     "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
 }
 </script>
-  }
-
-  const orderId = generateOrderId();
-  const content = phone;
-
-  const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${content}`;
-
-  document.getElementById("qrImage").src = qrUrl;
-  document.getElementById("qrBox").style.display = "block";
-  document.getElementById("orderInfo").innerHTML =
-    "Mã đơn: " + orderId + "<br>" +
-    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
-    "Nội dung: " + content + "<br><br>" +
-    "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
-}
-</script>
-
 </body>
 </html>
