@@ -31,11 +31,10 @@ body {
   margin-top: 8px;
 }
 
-.tiktok-box {
-  margin-top: 12px;
-  font-size: 14px;
+.tiktok-box a {
   color: #e91e63;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .container {
@@ -89,11 +88,6 @@ button:hover {
   border: 1px solid #ffe0ec;
 }
 
-.order-form h3 {
-  margin-top: 0;
-  color: #d4a017;
-}
-
 input {
   width: 100%;
   padding: 10px;
@@ -101,10 +95,6 @@ input {
   border-radius: 8px;
   border: 1px solid #ffc1d6;
   outline: none;
-}
-
-input:focus {
-  border-color: #e91e63;
 }
 
 .qr-box {
@@ -125,11 +115,6 @@ input:focus {
   border-top: 2px solid #ffe0ec;
 }
 
-.features p {
-  margin: 6px 0;
-  color: #555;
-}
-
 .footer {
   text-align: center;
   padding: 20px;
@@ -138,56 +123,19 @@ input:focus {
 }
 </style>
 </head>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>LocketGold</title>
-</head>
-
-<body>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>LocketGold</title>
-</head>
 
 <body>
 
-  <button id="loginBtn">Đăng nhập Google</button>
-
-  <!-- DÁN SCRIPT Ở ĐÂY -->
-  <script type="module">
-    // code firebase ở đây
-  </script>
-
-</body>
-</html>  
-</body>
-</html>
-<body>
-
-<div class="features">
-  <h3 style="color:#d4a017; margin-bottom:15px;">Tính năng Locket Gold</h3>
-
-  <p>🚫 Không có quảng cáo</p>
-  <p>🎦 Quay Video ngắn</p>
-  <p>👀 Xem ai đã truy cập Locket của mình</p>
-  <p>🎞 Tải ảnh lên từ thư viện</p>
-  <p>👨‍👩‍👧 Thêm bạn bè không giới hạn</p>
-  <p>💛 Thay đổi biểu tượng ứng dụng</p>
-  <p>✏️ Ghi Caption dài hơn</p>
-
-  <br>
-  <p style="color:#e91e63; font-weight:bold;">
-    Zalo hỗ trợ: 0346658742
-  </p>
-</div>
+<div class="header">
   <h1>Locket Gold Vĩnh Viễn</h1>
   <div class="sub">
     Không đụng iCloud • Bảo hành vĩnh viễn • Kích hoạt nhanh
   </div>
   <div class="tiktok-box">
-    TikTok: @_ngtr193
+    TikTok:
+    <a href="https://www.tiktok.com/@_ngtr193" target="_blank">
+      @_ngtr193
+    </a>
   </div>
 </div>
 
@@ -279,19 +227,6 @@ function submitOrder() {
     "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
     "Nội dung: " + content + "<br><br>" +
     "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
-
-  fetch("https://chumchum-backend.onrender.com/create-order", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      orderId: orderId,
-      name: name,
-      phone: phone,
-      product: selectedProduct,
-      price: selectedPrice,
-      status: "cho_thanh_toan"
-    })
-  });
 }
 </script>
 
