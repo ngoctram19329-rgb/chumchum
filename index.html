@@ -4,7 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Locket Gold Chum Chum</title>
+<body>
+  <div style="position:fixed;top:15px;left:15px;z-index:999;">
+  <button onclick="toggleMenu()" 
+    style="font-size:24px;background:none;border:none;cursor:pointer">
+    ☰
+  </button>
+</div>
 
+<div id="menu" 
+     style="display:none;position:fixed;top:50px;left:15px;
+            background:#fff;padding:15px;border:1px solid #ccc;">
+  <a href="/admin-login.html">Đăng nhập Admin</a>
+</div>
+</body>
 <style>
 body {
   margin: 0;
@@ -275,6 +288,11 @@ function submitOrder() {
     "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
 }
 </script>
-
+<script>
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = menu.style.display === "none" ? "block" : "none";
+}
+</script>
 </body>
 </html>
