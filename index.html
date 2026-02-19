@@ -1,81 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>LocketGold Chum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locket Gold Chum</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff5f8;
-  text-align: center;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f5f5f5;
+  text-align:center;
 }
 
-/* HEADER */
-.header {
-  background: linear-gradient(135deg,#ff4d88,#d4a017);
-  padding: 40px 20px;
-  color: white;
+.header{
+  background:linear-gradient(45deg,#c9a227,#ffd700);
+  color:white;
+  padding:30px 20px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 28px;
+.features{
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  text-align:left;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-.header p {
-  margin-top: 10px;
+.features h2{
+  text-align:center;
+  color:#c9a227;
 }
 
-/* FEATURES – đặt ngay đầu */
-.features {
-  background: white;
-  padding: 30px 20px;
-  border-top: 4px solid #d4a017;
-  border-bottom: 4px solid #d4a017;
+.pricing{
+  margin:30px 15px;
 }
 
-.features h2 {
-  color: #d4a017;
-  margin-bottom: 20px;
+.card{
+  background:white;
+  margin:15px auto;
+  padding:20px;
+  border-radius:12px;
+  width:90%;
+  max-width:400px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-.features p {
-  margin: 8px 0;
-  font-size: 16px;
-  color: #444;
+.price{
+  font-size:22px;
+  font-weight:bold;
+  color:#c9a227;
 }
 
-/* CARD GIÁ */
-.container {
-  padding: 30px 20px;
+button{
+  background:#c9a227;
+  color:white;
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
 }
 
-.card {
-  background: white;
-  padding: 25px;
-  margin: 20px auto;
-  border-radius: 15px;
-  max-width: 320px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+.order-form{
+  display:none;
+  margin:30px 15px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-.price {
-  font-size: 24px;
-  color: #e91e63;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.button {
-  display: inline-block;
-  padding: 12px 25px;
-  background: linear-gradient(135deg,#ff4d88,#d4a017);
-  color: white;
-  border-radius: 25px;
-  text-decoration: none;
-  margin-top: 10px;
+input{
+  width:90%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
 }
 </style>
 </head>
@@ -83,42 +88,89 @@ body {
 <body>
 
 <div class="header">
-  <h1>LocketGold Chum</h1>
-  <p>Uy tín – Bảo hành – Gold vĩnh viễn</p>
+  <h1>LOCKET GOLD CHUM</h1>
+  <p>Uy tín • Bảo hành • Gold vĩnh viễn</p>
 </div>
 
 <div class="features">
-  <h2>✨ Tính năng Locket Gold bao gồm:</h2>
+  <h2>TÍNH NĂNG LOCKET GOLD</h2>
   <p>🚫 Không có quảng cáo</p>
-  <p>🎦 Quay Video ngắn</p>
+  <p>🎦 Quay video ngắn</p>
   <p>👀 Xem ai đã truy cập Locket của mình</p>
   <p>🎞 Tải ảnh lên từ thư viện</p>
   <p>👨‍👩‍👧 Thêm bạn bè không giới hạn</p>
   <p>💛 Thay đổi biểu tượng ứng dụng</p>
-  <p>✏️ Ghi Caption dài hơn</p>
+  <p>✏️ Ghi caption dài hơn</p>
 </div>
 
-<div class="container">
+<div class="pricing">
 
   <div class="card">
-    <h3>LOCKETGOLD BẬT VPN</h3>
-    <div class="price">35.000đ</div>
-    <a class="button" href="https://zalo.me/0346658742">Mua ngay</a>
+    <h3>Locket Gold Bật VPN</h3>
+    <p class="price">35.000đ</p>
+    <button onclick="showForm(35000)">Mua ngay</button>
   </div>
 
   <div class="card">
-    <h3>LOCKETGOLD TẮT VPN</h3>
-    <div class="price">49.000đ</div>
-    <a class="button" href="https://zalo.me/0346658742">Mua ngay</a>
+    <h3>Locket Gold Tắt VPN</h3>
+    <p class="price">49.000đ</p>
+    <button onclick="showForm(49000)">Mua ngay</button>
   </div>
 
   <div class="card">
-    <h3>LOCKETGOLD ANDROID</h3>
-    <div class="price">20.000đ</div>
-    <a class="button" href="https://zalo.me/0346658742">Mua ngay</a>
+    <h3>Locket Gold Android</h3>
+    <p class="price">20.000đ</p>
+    <button onclick="showForm(20000)">Mua ngay</button>
   </div>
 
 </div>
+
+<div class="order-form" id="orderForm">
+  <h3>Thông tin thanh toán</h3>
+
+  <input type="text" id="name" placeholder="Nhập tên của bạn">
+  <input type="text" id="phone" placeholder="Nhập số điện thoại">
+
+  <button onclick="submitOrder()">Tạo mã thanh toán</button>
+
+  <div id="qrBox" style="display:none; margin-top:20px;">
+    <p><strong>Quét mã MoMo để thanh toán</strong></p>
+    <p><b>SĐT MoMo:</b> 0346658742</p>
+    <p><b>Chủ tài khoản:</b> TRAN THI NGOC TRAM</p>
+    <img id="qrImage" width="250">
+    <p id="orderInfo"></p>
+  </div>
+</div>
+
+<script>
+let selectedPrice = 0;
+
+function showForm(price){
+  selectedPrice = price;
+  document.getElementById("orderForm").style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function submitOrder(){
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+
+  if(!name || !phone){
+    alert("Vui lòng nhập đầy đủ thông tin.");
+    return;
+  }
+
+  const qrUrl =
+  `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${phone}`;
+
+  document.getElementById("qrImage").src = qrUrl;
+  document.getElementById("qrBox").style.display = "block";
+
+  document.getElementById("orderInfo").innerHTML =
+    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
+    "Nội dung chuyển khoản: <b>" + phone + "</b>";
+}
+</script>
 
 </body>
 </html>
