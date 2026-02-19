@@ -1,0 +1,29 @@
+<h2>Danh sách đơn</h2>
+<div id="list"></div>
+
+<script>
+fetch("https://link-backend-cua-ban.onrender.com/orders")
+.then(res => res.json())
+.then(data => {
+  let html = "";
+  data.forEach(o => {
+    html += `
+      <div style="margin:10px;padding:10px;border:1px solid #ccc">
+        ID: ${o.id} <br>
+        Username: ${o.username} <br>
+        Trạng thái: ${o.status} <br>
+        <button onclick="approve(${o.id})">Duyệt</button>
+      </div>
+    `;
+  });
+  document.getElementById("list").innerHTML = html;
+});
+
+function approve(id){
+  fetch("https://link-backend-cua-ban.onrender.com/approve", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({id})
+  }).then(()=> location.reload());
+}
+</script>
