@@ -241,12 +241,11 @@ input {
 </div>
 
 <script>
+const BACKEND = "https://chumchum-backend-2.onrender.com";
+
 let selectedProduct = "";
 let selectedPrice = 0;
-
-function generateOrderId() {
-  return "ORD" + Date.now();
-}
+let interval = null;
 
 function showForm(product, price, buttonElement) {
   selectedProduct = product;
@@ -274,24 +273,72 @@ function submitOrder() {
     return;
   }
 
-  const orderId = generateOrderId();
-  const content = phone;
+  fetch(BACKEND + "/create-order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      phone,
+      product: selectedProduct,
+      price: selectedPrice
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    localStorage.setItem("orderId", data.id);
 
-  const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${content}`;
+    const qrUrl =
+      `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${phone}`;
 
-  document.getElementById("qrImage").src = qrUrl;
-  document.getElementById("qrBox").style.display = "block";
-  document.getElementById("orderInfo").innerHTML =
-    "Mã đơn: " + orderId + "<br>" +
-    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
-    "Nội dung: " + content + "<br><br>" +
-    "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
+    document.getElementById("qrImage").src = qrUrl;
+    document.getElementById("qrBox").style.display = "block";
+    document.getElementById("orderInfo").innerHTML =
+      "Mã đơn: " + data.id + "<br>" +
+      "Sản phẩm: " + selectedProduct + "<br>" +
+      "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
+      "Nội dung CK: " + phone + "<br><br>" +
+      "Đang chờ admin duyệt...";
+
+    startChecking();
+  })
+  .catch(() => {
+    alert("Không kết nối được server.");
+  });
 }
-</script>
-<script>
+
+function checkStatus() {
+  const id = localStorage.getItem("orderId");
+  if (!id) return;
+
+  fetch(BACKEND + "/order-status/" + id)
+  .then(res => res.json())
+  .then(data => {
+    if (!data.success) return;
+
+    if (data.status === "approved") {
+      document.getElementById("orderInfo").innerHTML +=
+        "<br><br><strong style='color:green;'>ĐƠN ĐÃ ĐƯỢC DUYỆT ✅</strong><br><br>" +
+        "<a href='https://zalo.me/0346658742' target='_blank'>" +
+        "<button style='background:green;color:white;padding:10px;border:none;border-radius:8px;'>Liên hệ nhận hàng</button></a>";
+
+      clearInterval(interval);
+      localStorage.removeItem("orderId");
+    }
+  });
+}
+
+function startChecking() {
+  if (interval) clearInterval(interval);
+  interval = setInterval(checkStatus, 5000);
+}
+
 function toggleMenu(){
   const menu = document.getElementById("menu");
   menu.style.display = menu.style.display === "none" ? "block" : "none";
+}
+
+if (localStorage.getItem("orderId")) {
+  startChecking();
 }
 </script>
 </body>
