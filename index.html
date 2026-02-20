@@ -4,19 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Locket Gold Chum Chum</title>
-  <div style="position:fixed;top:15px;left:15px;z-index:999;">
-  <button onclick="toggleMenu()" 
-  style="font-size:24px;background:none;border:none;cursor:pointer;color:black !important;">
-  ☰
-</button>
-</div>
 
-<div id="menu" 
-     style="display:none;position:fixed;top:50px;left:15px;
-            background:#fff;padding:15px;border:1px solid #ccc;">
-  <a href="/admin-login.html">Đăng nhập Admin</a>
-</div>
-</body>
 <style>
 body {
   margin: 0;
@@ -41,12 +29,6 @@ body {
   font-size: 14px;
   color: #666;
   margin-top: 8px;
-}
-
-.tiktok-box a {
-  color: #e91e63;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 .container {
@@ -86,9 +68,7 @@ button {
   font-size: 15px;
 }
 
-button:hover {
-  opacity: 0.9;
-}
+button:hover { opacity: 0.9; }
 
 .order-form {
   background: white;
@@ -133,23 +113,41 @@ input {
   color: #999;
   font-size: 13px;
 }
+
+#menu {
+  display:none;
+  position:fixed;
+  top:50px;
+  left:15px;
+  background:#fff;
+  padding:15px;
+  border:1px solid #ccc;
+}
 </style>
 </head>
 
 <body>
+
+<div style="position:fixed;top:15px;left:15px;z-index:999;">
+  <button onclick="toggleMenu()" 
+  style="font-size:24px;background:none;border:none;cursor:pointer;color:black;">
+  ☰
+  </button>
+</div>
+
+<div id="menu">
+  <a href="/admin-login.html">Đăng nhập Admin</a>
+</div>
 
 <div class="header">
   <h1>LocketGold ChumChum</h1>
   <div class="sub">
     Không iCloud • Bảo hành vĩnh viễn • Kích hoạt nhanh
   </div>
-</div>  <!-- hết header -->
+</div>
 
 <div class="features">
-  <h3 style="color:#d4a017; margin-bottom:15px;">
-    Tính năng Locket Gold bao gồm:
-  </h3>
-
+  <h3 style="color:#d4a017;">Tính năng Locket Gold bao gồm:</h3>
   <p>🚫 Không có quảng cáo</p>
   <p>🎦 Quay Video ngắn</p>
   <p>👀 Xem ai đã truy cập Locket của mình</p>
@@ -160,24 +158,6 @@ input {
 </div>
 
 <div class="container">
-
-  <div class="card">
-    <h2>Thuê id apple tải Shadowrocket</h2>
-    <div class="price">10.000đ</div>
-    <button onclick="showForm('Thuê id apple tải Shadowrocket',10000,this)">Mua ngay</button>
-  </div>
-
-  <div class="card">
-    <h2>iOS - Bật VPN</h2>
-    <div class="price">30.000đ</div>
-    <button onclick="showForm('iOS - Bật VPN',30000,this)">Mua ngay</button>
-  </div>
-
-  <div class="card">
-    <h2>iOS - Tắt VPN</h2>
-    <div class="price">40.000đ</div>
-    <button onclick="showForm('iOS - Tắt VPN',40000,this)">Mua ngay</button>
-  </div>
 
   <div class="card">
     <h2>Android</h2>
@@ -200,41 +180,18 @@ input {
   </div>
 </div>
 
-<div class="features">
-  <p>✔ Lên Gold vĩnh viễn</p>
-  <p>✔ Không liên quan iCloud</p>
-  <p>✔ Bảo Hành - Hỗ Trợ - Nhanh Chóng</p>
-</div>
 <div style="margin:20px;">
   <a href="https://zalo.me/0346658742" target="_blank">
-    <button style="
-      background:linear-gradient(135deg,#ff69b4,#ffd700);
-      color:white;
-      border:none;
-      padding:12px 25px;
-      border-radius:10px;
-      font-weight:bold;
-      cursor:pointer;
-    ">
-      Zalo
-    </button>
+    <button>Zalo</button>
   </a>
 </div>
-  <div style="margin:15px;">
+
+<div style="margin:15px;">
   <a href="https://www.tiktok.com/@_ngtr193" target="_blank">
-    <button style="
-      background:linear-gradient(135deg,#ff69b4,#ffd700);
-      color:white;
-      border:none;
-      padding:12px 25px;
-      border-radius:10px;
-      font-weight:bold;
-      cursor:pointer;
-    ">
-     TikTok
-    </button>
+    <button>TikTok</button>
   </a>
 </div>
+
 <div class="footer">
   © Locket Gold | CHUM CHUM
 </div>
@@ -246,14 +203,11 @@ let selectedProduct = "";
 let selectedPrice = 0;
 let interval = null;
 
-function showForm(product, price, buttonElement) {
+function showForm(product, price, btn) {
   selectedProduct = product;
   selectedPrice = price;
-
   const form = document.getElementById("orderForm");
-  const card = buttonElement.closest(".card");
-
-  card.appendChild(form);
+  btn.closest(".card").appendChild(form);
   form.style.display = "block";
 }
 
@@ -266,21 +220,10 @@ function submitOrder() {
     return;
   }
 
-  const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
-  if (!phoneRegex.test(phone)) {
-    alert("Số điện thoại không hợp lệ.");
-    return;
-  }
-
   fetch(BACKEND + "/create-order", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      phone,
-      product: selectedProduct,
-      price: selectedPrice
-    })
+    body: JSON.stringify({ name, phone, product:selectedProduct, price:selectedPrice })
   })
   .then(res => res.json())
   .then(data => {
@@ -292,17 +235,11 @@ function submitOrder() {
     document.getElementById("qrImage").src = qrUrl;
     document.getElementById("qrBox").style.display = "block";
     document.getElementById("orderInfo").innerHTML =
-      "Mã đơn: " + data.id + "<br>" +
-      "Sản phẩm: " + selectedProduct + "<br>" +
-      "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
-      "Nội dung CK: " + phone + "<br><br>" +
-      "Đang chờ admin duyệt...";
+      "Mã đơn: " + data.id + "<br>Đang chờ admin duyệt...";
 
     startChecking();
   })
-  .catch(() => {
-    alert("Không kết nối được server.");
-  });
+  .catch(() => alert("Không kết nối được server."));
 }
 
 function checkStatus() {
@@ -312,8 +249,6 @@ function checkStatus() {
   fetch(BACKEND + "/status/" + id)
   .then(res => res.json())
   .then(data => {
-    if (!data.success) return;
-
     if (data.status === "approved") {
       clearInterval(interval);
       localStorage.removeItem("orderId");
@@ -321,14 +256,8 @@ function checkStatus() {
       document.getElementById("orderInfo").innerHTML +=
         "<br><br><strong style='color:green;'>ĐƠN ĐÃ ĐƯỢC DUYỆT ✅</strong>";
 
-      // Reload sau 1 giây
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
+      setTimeout(() => { location.reload(); }, 1000);
     }
-  })
-  .catch(() => {
-    console.log("Lỗi check status");
   });
 }
 
@@ -339,13 +268,13 @@ function startChecking() {
 
 function toggleMenu(){
   const menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "none" ? "block" : "none";
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
-// Nếu có đơn đang chờ thì tự check lại
 if (localStorage.getItem("orderId")) {
   startChecking();
 }
 </script>
+
 </body>
 </html>
