@@ -320,6 +320,14 @@ function checkStatus() {
     if (!data.success) return;
 
     if (data.status === "approved") {
+  clearInterval(interval);
+  localStorage.removeItem("orderId");
+
+  // Đợi 1 giây rồi reload trang
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
+}
       document.getElementById("orderInfo").innerHTML +=
         "<br><br><strong style='color:green;'>ĐƠN ĐÃ ĐƯỢC DUYỆT ✅</strong><br><br>" +
         "<a href='https://zalo.me/0346658742' target='_blank'>" +
