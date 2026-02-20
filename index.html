@@ -177,8 +177,8 @@ input {
 
 <div class="order-form" id="orderForm">
   <h3>Thông tin khách hàng</h3>
-  <input type="text" id="name" placeholder="Nhập tên của bạn">
   <input type="text" id="phone" placeholder="Nhập số điện thoại (10 số)">
+  <input type="text" id="ctvCode" placeholder="Nhập mã CTV (nếu có)">
   <button onclick="submitOrder()">Thanh toán</button>
 
   <div class="qr-box" id="qrBox" style="display:none;">
@@ -245,9 +245,38 @@ function showForm(product, price) {
   window.scrollTo(0, document.body.scrollHeight);
 }
 
-function submitOrder() {
-  const name = document.getElementById("name").value.trim();
+  function submitOrder() {
   const phone = document.getElementById("phone").value.trim();
+  let ctvCode = document.getElementById("ctvCode").value.trim().toUpperCase();
+
+  if (!name || !phone) {
+    alert("Vui lòng nhập đầy đủ thông tin.");
+    return;
+  }
+
+  const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
+  if (!phoneRegex.test(phone)) {
+    alert("Số điện thoại không hợp lệ.");
+    return;
+  }
+
+  if (!ctvCode) {
+    ctvCode = "KHONGCTV";
+  }
+
+  const orderId = generateOrderId();
+  const content = phone + " " + ctvCode;
+
+  const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${content}`;
+
+  document.getElementById("qrImage").src = qrUrl;
+  document.getElementById("qrBox").style.display = "block";
+  document.getElementById("orderInfo").innerHTML =
+    "Mã đơn: " + orderId + "<br>" +
+    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
+    "Nội dung: " + content + "<br><br>" +
+    "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
+}
 
   if (!name || !phone) {
     alert("Vui lòng nhập đầy đủ thông tin.");
