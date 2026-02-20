@@ -131,14 +131,20 @@ function loadOrders(){
   });
 }
 
-function approveOrder(id){
-  fetch(BACKEND + "/approve/" + id)
-  .then(()=> loadOrders());
+function approve(id){
+  fetch(BACKEND + "/approve-order/" + id, {
+    method: "POST"
+  })
+  .then(res => res.json())
+  .then(() => loadOrders());
 }
 
 function deleteOrder(id){
-  fetch(BACKEND + "/delete/" + id)
-  .then(()=> loadOrders());
+  fetch(BACKEND + "/delete-order/" + id, {
+    method: "POST"
+  })
+  .then(res => res.json())
+  .then(() => loadOrders());
 }
 
 loadOrders();
