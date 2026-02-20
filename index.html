@@ -56,6 +56,28 @@ body {
 }
 
 .price {
+  .old-price{
+  text-decoration: line-through;
+  color:#999;
+  font-size:14px;
+}
+
+.new-price{
+  color:#e91e63;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.sale-badge{
+  display:inline-block;
+  margin-left:8px;
+  padding:3px 8px;
+  font-size:12px;
+  font-weight:bold;
+  color:#fff;
+  background:linear-gradient(135deg,#ff66a3,#d4a017);
+  border-radius:6px;
+}
   font-size: 22px;
   font-weight: bold;
   color: #e91e63;
@@ -151,25 +173,41 @@ input {
 
   <div class="card">
     <h2>Thuê id apple tải Shadowrocket</h2>
-    <div class="price">15.000đ</div>
+    <div class="price">
+  <span class="old-price">29.000đ</span><br>
+  <span class="new-price">15.000đ</span>
+  <span class="sale-badge">SALE</span>
+</div>
     <button onclick="showForm('Thuê id apple tải Shadowrocket',10000)">Mua ngay</button>
   </div>
 
   <div class="card">
     <h2>iOS - Bật VPN</h2>
-    <div class="price">30.000đ</div>
+    <div class="price">
+  <span class="old-price">59.000đ</span><br>
+  <span class="new-price">30.000đ</span>
+  <span class="sale-badge">SALE</span>
+</div>
     <button onclick="showForm('iOS - Bật VPN',30000)">Mua ngay</button>
   </div>
 
   <div class="card">
     <h2>iOS - Tắt VPN</h2>
-    <div class="price">45.000đ</div>
+    <div class="price">
+  <span class="old-price">89.000đ</span><br>
+  <span class="new-price">45.000đ</span>
+  <span class="sale-badge">SALE</span>
+</div>
     <button onclick="showForm('iOS - Tắt VPN',40000)">Mua ngay</button>
   </div>
 
   <div class="card">
     <h2>Android</h2>
-    <div class="price">25.000đ</div>
+    <div class="price">
+  <span class="old-price">39.000đ</span><br>
+  <span class="new-price">25.000đ</span>
+  <span class="sale-badge">SALE</span>
+</div>
     <button onclick="showForm('Android',20000)">Mua ngay</button>
   </div>
 
