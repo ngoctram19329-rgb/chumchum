@@ -1,29 +1,45 @@
-<h2>Danh sách đơn</h2>
-<div id="list"></div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang Quản Lý</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: linear-gradient(to bottom, #fff0f5, #ffffff);
+  text-align: center;
+  padding-top: 80px;
+}
+
+h2 {
+  color: #d63384;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(to right, #ff69b4, #ffc107);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Trang Quản Lý Admin</h2>
+<p>Đăng nhập thành công.</p>
+
+<button onclick="logout()">Đăng xuất</button>
 
 <script>
-fetch("https://chumchum-frontend-1.onrender.com/")
-.then(res => res.json())
-.then(data => {
-  let html = "";
-  data.forEach(o => {
-    html += `
-      <div style="margin:10px;padding:10px;border:1px solid #ccc">
-        ID: ${o.id} <br>
-        Username: ${o.username} <br>
-        Trạng thái: ${o.status} <br>
-        <button onclick="approve(${o.id})">Duyệt</button>
-      </div>
-    `;
-  });
-  document.getElementById("list").innerHTML = html;
-});
-
-function approve(id){
-  fetch("https://link-backend-cua-ban.onrender.com/approve", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({id})
-  }).then(()=> location.reload());
+function logout() {
+  window.location.href = "admin-login.html";
 }
 </script>
+
+</body>
+</html>
