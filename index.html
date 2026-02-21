@@ -240,11 +240,48 @@ input {
 <div class="order-form" id="orderForm">
   <h3>Thông tin khách hàng</h3>
 
-  <input type="text" id="phone" placeholder="Nhập số điện thoại (phải có Zalo)">
+  <input type="text" id="phone" placeholder="Nhập số điện thoại (Zalo)">
   <div id="phoneNote" class="phone-alert">
     ⚠ SĐT phải đang sử dụng Zalo để admin liên hệ xác nhận đơn.
   </div>
+<div id="confirmBox" style="
+  display:none;
+  margin-bottom:12px;
+  padding:15px;
+  background:#fff3cd;
+  border:2px solid #ffcc00;
+  border-radius:12px;
+  text-align:center;
+">
+  <p style="margin-bottom:12px;font-weight:bold;">
+    ⚠ SĐT phải đang dùng Zalo để admin liên hệ. Bạn xác nhận đúng chưa?
+  </p>
 
+  <button onclick="confirmPhone()" style="
+    width:48%;
+    background:#28a745;
+    margin-right:2%;
+    border:none;
+    border-radius:8px;
+    padding:10px;
+    color:white;
+    font-weight:bold;
+  ">
+    Xác nhận
+  </button>
+
+  <button onclick="resetPhone()" style="
+    width:48%;
+    background:#dc3545;
+    border:none;
+    border-radius:8px;
+    padding:10px;
+    color:white;
+    font-weight:bold;
+  ">
+    Nhập lại
+  </button>
+</div>
   <input type="text" id="ctvCode" placeholder="Nhập mã CTV (nếu có)">
   <button onclick="submitOrder()">Thanh toán</button>
 
@@ -348,6 +385,8 @@ function submitOrder() {
   }
 
   note.style.display = "none";
+document.getElementById("confirmBox").style.display = "block";
+return;
 
   if (!ctvCode) {
     ctvCode = "";
@@ -365,6 +404,30 @@ function submitOrder() {
     "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
     "Nội dung: " + content + "<br><br>" +
     "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
+}
+  function confirmPhone() {
+  document.getElementById("confirmBox").style.display = "none";
+
+  const phone = document.getElementById("phone").value.trim();
+  let ctvCode = document.getElementById("ctvCode").value.trim().toUpperCase();
+
+  const orderId = generateOrderId();
+  const content = phone + " " + ctvCode;
+
+  const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${content}`;
+
+  document.getElementById("qrImage").src = qrUrl;
+  document.getElementById("qrBox").style.display = "block";
+  document.getElementById("orderInfo").innerHTML =
+    "Mã đơn: " + orderId + "<br>" +
+    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
+    "Nội dung: " + content + "<br><br>" +
+    "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
+}
+
+function resetPhone() {
+  document.getElementById("confirmBox").style.display = "none";
+  document.getElementById("phone").focus();
 }
 </script>
 
