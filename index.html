@@ -545,16 +545,15 @@ function confirmOrder() {
     return;
   }
 
-  const amount = 25000; 
-  const bank = "MB";
-  const stk = "YOUR_STK";
-  const name = "YOUR_NAME";
+  const amount = 25000;
+  const momoPhone = "0346658742";
+  const name = "TRAN THI NGOC TRAM";
 
   const content = `LOCKET ${phone} ${ctv}`;
 
-  const qr = `https://img.vietqr.io/image/${bank}-${stk}-compact.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(name)}`;
+  const qr = `https://img.vietqr.io/image/MB-0346658742-compact.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(name)}`;
 
-  document.getElementById("orderText").innerText = "Quét mã để thanh toán";
+  document.getElementById("orderText").innerText = "Quét mã MoMo để thanh toán";
   document.getElementById("qrImage").src = qr;
   document.getElementById("qrBox").style.display = "block";
 }
