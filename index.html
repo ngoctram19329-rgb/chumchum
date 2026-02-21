@@ -290,6 +290,22 @@ body {
 
   <div class="card">
     <h2>Android</h2>
+
+  <input type="text" id="ctvCode" placeholder="Nhập mã CTV (nếu có)">
+  <button onclick="submitOrder()">Thanh toán</button>
+
+  <div class="qr-box" id="qrBox" style="display:none;">
+    <p><strong>Quét mã để thanh toán</strong></p>
+    <img id="qrImage" src="">
+    <p id="orderInfo"></p>
+  </div>
+</div>
+    <div class="price">
+      <span class="old-price">39.000đ</span><br>
+      <span class="new-price">25.000đ</span>
+      <span class="sale-badge">SALE</span>
+    </div>
+
     <div class="order-form" id="orderForm">
   <h3>Thông tin khách hàng</h3>
 
@@ -311,23 +327,6 @@ body {
       Nhập lại
     </button>
   </div>
-
-  <input type="text" id="ctvCode" placeholder="Nhập mã CTV (nếu có)">
-  <button onclick="submitOrder()">Thanh toán</button>
-
-  <div class="qr-box" id="qrBox" style="display:none;">
-    <p><strong>Quét mã để thanh toán</strong></p>
-    <img id="qrImage" src="">
-    <p id="orderInfo"></p>
-  </div>
-</div>
-    <div class="price">
-      <span class="old-price">39.000đ</span><br>
-      <span class="new-price">25.000đ</span>
-      <span class="sale-badge">SALE</span>
-    </div>
-
-
 <div style="
   padding:30px 20px;
   margin:30px 20px;
@@ -443,12 +442,10 @@ function submitOrder() {
   }
 
   note.style.display = "none";
-document.getElementById("confirmBox").style.display = "block";
-return;
 
-  if (!ctvCode) {
-    ctvCode = "";
-  }
+  // Hiện box xác nhận
+  document.getElementById("confirmBox").style.display = "block";
+}
 
   const orderId = generateOrderId();
   const content = phone + " " + ctvCode;
