@@ -503,32 +503,31 @@ function confirmPhone() {
   document.getElementById("confirmBox").style.display = "none";
 
   const phone = document.getElementById("phone").value.trim();
-
   const ctvInput = document.getElementById("ctvCode");
   let ctvCode = "";
+
   if (ctvInput) {
     ctvCode = ctvInput.value.trim().toUpperCase();
   }
 
-  const orderId = generateOrderId();
+  if (!phone) {
+    alert("Vui lòng nhập số điện thoại");
+    return;
+  }
+
   const content = phone + (ctvCode ? " " + ctvCode : "");
 
-  const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${content}`;
+  // QUAN TRỌNG: dùng selectedPrice
+  const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${encodeURIComponent(content)}`;
 
-  const qrImage = document.getElementById("qrImage");
-  const qrBox = document.getElementById("qrBox");
-  const orderInfo = document.getElementById("orderInfo");
+  document.getElementById("qrImage").src = qrUrl;
+  document.getElementById("qrBox").style.display = "block";
 
-  if (qrImage) qrImage.src = qrUrl;
-  if (qrBox) qrBox.style.display = "block";
-
-  if (orderInfo) {
-    orderInfo.innerHTML =
-      "Mã đơn: " + orderId + "<br>" +
-      "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
-      "Nội dung: " + content + "<br><br>" +
-      "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
-  }
+  document.getElementById("orderInfo").innerHTML =
+    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
+    "SĐT MoMo: 0346658742<br>" +
+    "Tên: TRAN THI NGOC TRAM<br>" +
+    "Nội dung: " + content;
 }
 function resetPhone() {
   document.getElementById("confirmBox").style.display = "none";
