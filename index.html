@@ -320,6 +320,12 @@ body {
     <button onclick="resetPhone()" class="btn-back">
       Nhập lại
     </button>
+    <input type="text" id="ctvCode" placeholder="Mã CTV (nếu có)" style="margin-top:10px;">
+
+<div id="qrBox" class="qr-box" style="display:none;">
+  <p id="orderInfo"></p>
+  <img id="qrImage" src="">
+</div>
      </div>  <!-- đóng order-form -->
   </div>
 <div style="
@@ -415,9 +421,14 @@ function showForm(product, price) {
   selectedPrice = Number(price);
 
   document.getElementById("orderForm").style.display = "block";
-  document.getElementById("qrBox").style.display = "none";
+
+  const qrBox = document.getElementById("qrBox");
+  if (qrBox) qrBox.style.display = "none";
+
   document.getElementById("phone").value = "";
-  document.getElementById("ctvCode").value = "";
+
+  const ctvInput = document.getElementById("ctvCode");
+  if (ctvInput) ctvInput.value = "";
 
   document.getElementById("orderForm").scrollIntoView({ behavior: "smooth" });
 }
@@ -431,7 +442,7 @@ function submitOrder() {
     return;
   }
 
-  const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
+  const phoneRegex = /^0[35789][0-9]{8}$/;
   if (!phoneRegex.test(phone)) {
     note.style.display = "block";
     return;
@@ -445,23 +456,33 @@ function confirmPhone() {
   document.getElementById("confirmBox").style.display = "none";
 
   const phone = document.getElementById("phone").value.trim();
-  let ctvCode = document.getElementById("ctvCode").value.trim().toUpperCase();
-  if (!ctvCode) ctvCode = "";
+
+  const ctvInput = document.getElementById("ctvCode");
+  let ctvCode = "";
+  if (ctvInput) {
+    ctvCode = ctvInput.value.trim().toUpperCase();
+  }
 
   const orderId = generateOrderId();
   const content = phone + (ctvCode ? " " + ctvCode : "");
 
   const qrUrl = `https://img.vietqr.io/image/momo-0346658742-compact.png?amount=${selectedPrice}&addInfo=${content}`;
 
-  document.getElementById("qrImage").src = qrUrl;
-  document.getElementById("qrBox").style.display = "block";
-  document.getElementById("orderInfo").innerHTML =
-    "Mã đơn: " + orderId + "<br>" +
-    "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
-    "Nội dung: " + content + "<br><br>" +
-    "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
-}
+  const qrImage = document.getElementById("qrImage");
+  const qrBox = document.getElementById("qrBox");
+  const orderInfo = document.getElementById("orderInfo");
 
+  if (qrImage) qrImage.src = qrUrl;
+  if (qrBox) qrBox.style.display = "block";
+
+  if (orderInfo) {
+    orderInfo.innerHTML =
+      "Mã đơn: " + orderId + "<br>" +
+      "Số tiền: " + selectedPrice.toLocaleString() + "đ<br>" +
+      "Nội dung: " + content + "<br><br>" +
+      "Sau khi chuyển khoản xong, vui lòng đợi admin liên hệ.";
+  }
+}
 function resetPhone() {
   document.getElementById("confirmBox").style.display = "none";
   document.getElementById("phone").focus();
