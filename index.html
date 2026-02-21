@@ -31,12 +31,6 @@ body {
   margin-top: 8px;
 }
 
-.tiktok-box a {
-  color: #e91e63;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 .container {
   padding: 20px;
 }
@@ -55,8 +49,11 @@ body {
   color: #d4a017;
 }
 
-.price {
-  .old-price{
+.price{
+  margin-bottom:15px;
+}
+
+.old-price{
   text-decoration: line-through;
   color:#999;
   font-size:14px;
@@ -78,11 +75,6 @@ body {
   background:linear-gradient(135deg,#ff66a3,#d4a017);
   border-radius:6px;
 }
-  font-size: 22px;
-  font-weight: bold;
-  color: #e91e63;
-  margin-bottom: 15px;
-}
 
 button {
   width: 100%;
@@ -94,10 +86,6 @@ button {
   font-weight: bold;
   cursor: pointer;
   font-size: 15px;
-}
-
-button:hover {
-  opacity: 0.9;
 }
 
 .order-form {
@@ -116,7 +104,18 @@ input {
   margin-bottom: 12px;
   border-radius: 8px;
   border: 1px solid #ffc1d6;
-  outline: none;
+}
+
+.phone-alert{
+  display:none;
+  margin-bottom:12px;
+  padding:12px;
+  background:#fff3cd;
+  border:2px solid #ffcc00;
+  color:#b8860b;
+  font-weight:bold;
+  border-radius:12px;
+  font-size:14px;
 }
 
 .qr-box {
@@ -129,30 +128,11 @@ input {
   margin-top: 10px;
 }
 
-.features {
-  background: white;
-  padding: 25px;
-  margin-top: 20px;
-  text-align: center;
-  border-top: 2px solid #ffe0ec;
-}
-
 .footer {
   text-align: center;
   padding: 20px;
   color: #999;
   font-size: 13px;
-}
-  .btn-uytin{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  background:linear-gradient(135deg,#ff69b4,#ffd700);
-  color:white;
-  font-weight:bold;
-  border-radius:20px;
-  text-decoration:none;
-  font-size:14px;
 }
 </style>
 </head>
@@ -161,28 +141,15 @@ input {
 
 <div class="header">
   <h1>LocketGold ChumChum</h1>
-
   <div class="sub">
     Không iCloud • Bảo hành vĩnh viễn • Kích hoạt nhanh
   </div>
 
-  <a href="https://instagram.com/_19thg.03" target="_blank" class="btn-uytin">
-    XEM FEEDBACK TRÊN INSTAGRAM
+  <a href="https://instagram.com/_19thg.03" target="_blank">
+    <button style="margin-top:15px;border-radius:20px;">
+      XEM FEEDBACK TRÊN INSTAGRAM
+    </button>
   </a>
-</div>
-
-<div class="features">
-  <h3 style="color:#d4a017; margin-bottom:15px;">
-    Tính năng Locket Gold bao gồm:
-  </h3>
-
-  <p>🚫 Không có quảng cáo</p>
-  <p>🎦 Quay Video ngắn</p>
-  <p>👀 Xem ai đã truy cập Locket của mình</p>
-  <p>🎞 Tải ảnh lên từ thư viện</p>
-  <p>👨‍👩‍👧 Thêm bạn bè không giới hạn</p>
-  <p>💛 Thay đổi biểu tượng ứng dụng</p>
-  <p>✏️ Ghi Caption dài hơn</p>
 </div>
 
 <div class="container">
@@ -190,50 +157,55 @@ input {
   <div class="card">
     <h2>Thuê id apple tải Shadowrocket</h2>
     <div class="price">
-  <span class="old-price">29.000đ</span><br>
-  <span class="new-price">15.000đ</span>
-  <span class="sale-badge">SALE</span>
-</div>
-    <button onclick="showForm('Thuê id apple tải Shadowrocket',10000)">Mua ngay</button>
+      <span class="old-price">29.000đ</span><br>
+      <span class="new-price">15.000đ</span>
+      <span class="sale-badge">SALE</span>
+    </div>
+    <button onclick="showForm('Thuê id apple tải Shadowrocket',15000)">Mua ngay</button>
   </div>
 
   <div class="card">
     <h2>iOS - Bật VPN</h2>
     <div class="price">
-  <span class="old-price">59.000đ</span><br>
-  <span class="new-price">30.000đ</span>
-  <span class="sale-badge">SALE</span>
-</div>
+      <span class="old-price">59.000đ</span><br>
+      <span class="new-price">30.000đ</span>
+      <span class="sale-badge">SALE</span>
+    </div>
     <button onclick="showForm('iOS - Bật VPN',30000)">Mua ngay</button>
   </div>
 
   <div class="card">
     <h2>iOS - Tắt VPN</h2>
     <div class="price">
-  <span class="old-price">89.000đ</span><br>
-  <span class="new-price">45.000đ</span>
-  <span class="sale-badge">SALE</span>
-</div>
-    <button onclick="showForm('iOS - Tắt VPN',40000)">Mua ngay</button>
+      <span class="old-price">89.000đ</span><br>
+      <span class="new-price">45.000đ</span>
+      <span class="sale-badge">SALE</span>
+    </div>
+    <button onclick="showForm('iOS - Tắt VPN',45000)">Mua ngay</button>
   </div>
 
   <div class="card">
     <h2>Android</h2>
     <div class="price">
-  <span class="old-price">39.000đ</span><br>
-  <span class="new-price">25.000đ</span>
-  <span class="sale-badge">SALE</span>
-</div>
-    <button onclick="showForm('Android',20000)">Mua ngay</button>
+      <span class="old-price">39.000đ</span><br>
+      <span class="new-price">25.000đ</span>
+      <span class="sale-badge">SALE</span>
+    </div>
+    <button onclick="showForm('Android',25000)">Mua ngay</button>
   </div>
 
 </div>
 
 <div class="order-form" id="orderForm">
   <h3>Thông tin khách hàng</h3>
-  <input type="text" id="phone" placeholder="Nhập số điện thoại (10 số)">
-<input type="text" id="ctvCode" placeholder="Nhập mã CTV (nếu có)">
-<button onclick="submitOrder()">Thanh toán</button>
+
+  <input type="text" id="phone" placeholder="Nhập số điện thoại (phải có Zalo)">
+  <div id="phoneNote" class="phone-alert">
+    ⚠ SĐT phải đang sử dụng Zalo để admin liên hệ xác nhận đơn.
+  </div>
+
+  <input type="text" id="ctvCode" placeholder="Nhập mã CTV (nếu có)">
+  <button onclick="submitOrder()">Thanh toán</button>
 
   <div class="qr-box" id="qrBox" style="display:none;">
     <p><strong>Quét mã để thanh toán</strong></p>
@@ -242,49 +214,11 @@ input {
   </div>
 </div>
 
-<div class="features">
-  <p>✔ Lên Gold vĩnh viễn</p>
-  <p>✔ Không liên quan iCloud</p>
-  <p>✔ Bảo Hành - Hỗ Trợ - Nhanh Chóng</p>
-</div>
-<div style="margin:20px;">
-  <a href="https://zalo.me/0346658742" target="_blank">
-    <button style="
-      background:linear-gradient(135deg,#ff69b4,#ffd700);
-      color:white;
-      border:none;
-      padding:12px 25px;
-      border-radius:10px;
-      font-weight:bold;
-      cursor:pointer;
-    ">
-      Đăng ký làm CTV – Liên hệ Zalo
-    </button>
-  </a>
-</div>
-  <div style="margin:15px;">
-  <a href="https://www.tiktok.com/@_ngtr193" target="_blank">
-    <button style="
-      background:linear-gradient(135deg,#ff69b4,#ffd700);
-      color:white;
-      border:none;
-      padding:12px 25px;
-      border-radius:10px;
-      font-weight:bold;
-      cursor:pointer;
-    ">
-     TikTok
-    </button>
-  </a>
-</div>
 <div class="footer">
   © Locket Gold | CHUM CHUM
 </div>
 
 <script>
- window.onload = function() {
-  alert("Quý khách nên mở trang bằng trình duyệt web (Safari/Chrome) để tránh lỗi khi thanh toán.");
-}; 
 let selectedProduct = "";
 let selectedPrice = 0;
 
@@ -295,27 +229,28 @@ function generateOrderId() {
 function showForm(product, price) {
   selectedProduct = product;
   selectedPrice = price;
-
   const form = document.getElementById("orderForm");
-
   event.target.parentElement.appendChild(form);
   form.style.display = "block";
 }
 
-  function submitOrder() {
+function submitOrder() {
   const phone = document.getElementById("phone").value.trim();
+  const note = document.getElementById("phoneNote");
   let ctvCode = document.getElementById("ctvCode").value.trim().toUpperCase();
 
   if (!phone) {
-    alert("Vui lòng nhập số điện thoại.");
+    note.style.display = "block";
     return;
   }
 
   const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
   if (!phoneRegex.test(phone)) {
-    alert("Số điện thoại không hợp lệ.");
+    note.style.display = "block";
     return;
   }
+
+  note.style.display = "none";
 
   if (!ctvCode) {
     ctvCode = "";
