@@ -206,7 +206,6 @@ body {
   background:#ef4444;
   color:white;
 }
-}
   .insta-btn{
   display:block;
   width:100%;
@@ -391,12 +390,12 @@ function generateOrderId() {
 
 function showForm(product, price) {
   selectedProduct = product;
-  selectedPrice = Number(price);   // ép chắc chắn là số
+  selectedPrice = Number(price);
 
   const form = document.getElementById("orderForm");
   form.style.display = "block";
+  form.scrollIntoView({ behavior: "smooth" });
 }
-
 function submitOrder() {
   const phone = document.getElementById("phone").value.trim();
   const note = document.getElementById("phoneNote");
