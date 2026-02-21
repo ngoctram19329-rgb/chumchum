@@ -323,16 +323,9 @@ body {
   cursor:pointer;
 ">
   Thanh toán
-  <div id="qrBox" style="display:none; text-align:center; margin-top:20px;">
-  <h3>Quét mã để thanh toán</h3>
-  <img id="vietqrImg" style="width:250px; margin:10px 0;" />
+  <div id="qrBox" class="qr-box" style="display:none;">
   <p id="orderInfo"></p>
-</div>
-</button>
-
-<div id="qrBox" style="display:none; margin-top:15px; text-align:center;">
-  <p id="orderText"></p>
-  <img id="qrImage" style="width:200px;">
+  <img id="qrImage" src="">
 </div>
   <div id="phoneNote" class="phone-alert">
     <button onclick="submitOrder()">Thanh toán</button>
