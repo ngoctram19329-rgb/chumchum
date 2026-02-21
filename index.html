@@ -256,7 +256,7 @@ body {
     <span class="new-price">8.000đ</span>
     <span class="sale-badge">SALE</span>
   </div>
-  <button onclick="thanhToan(8000)">Thanh toán</button>
+  <button onclick="showForm('Khôi phục chuỗi Locket',8000)">Thanh toán</button>
 </div>
   <div class="card">
     <h2>Thuê id apple tải Shadowrocket</h2>
@@ -265,7 +265,7 @@ body {
       <span class="new-price">15.000đ</span>
       <span class="sale-badge">SALE</span>
     </div>
-    <button onclick="thanhToan(15000)">Thanh toán</button>
+    <button onclick="showForm('Thuê id apple tải Shadowrocket',15000)">Thanh toán</button>
   </div>
 
   <div class="card">
@@ -275,7 +275,7 @@ body {
       <span class="new-price">30.000đ</span>
       <span class="sale-badge">SALE</span>
     </div>
-    <button onclick="thanhToan(30000)">Thanh toán</button>
+    <button onclick="showForm('iOS - Bật VPN',30000)">Thanh toán</button>
   </div>
 
   <div class="card">
@@ -285,7 +285,7 @@ body {
       <span class="new-price">45.000đ</span>
       <span class="sale-badge">SALE</span>
     </div>
-    <button onclick="thanhToan(45000)">Thanh toán</button>
+    <button onclick="showForm('iOS - Tắt VPN',45000)">Thanh toán</button>
   </div>
 
   <div class="card">
@@ -295,7 +295,7 @@ body {
     <span class="new-price">25.000đ</span>
     <span class="sale-badge">SALE</span>
   </div>
-  <button onclick="thanhToan(25000)">Thanh toán</button>
+  <button onclick="showForm('Android',25000)">Thanh toán</button>
 </div>
 
     <div class="order-form" id="orderForm">
@@ -537,57 +537,6 @@ function confirmPhone() {
 function resetPhone() {
   document.getElementById("confirmBox").style.display = "none";
   document.getElementById("phone").focus();
-}
-</script>
-  <script>
-function confirmOrder() {
-  const phone = document.querySelector("input[placeholder='Nhập số điện thoại (Zalo)']").value;
-  const ctv = document.getElementById("ctvCode").value;
-
-  if(phone === "") {
-    alert("Vui lòng nhập số điện thoại");
-    return;
-  }
-
-  const amount = 25000;
-  const momoPhone = "0346658742";
-  const name = "TRAN THI NGOC TRAM";
-
-  const content = `LOCKET ${phone} ${ctv}`;
-
-  const qr = `https://img.vietqr.io/image/MB-0346658742-compact.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(name)}`;
-
-  document.getElementById("orderText").innerText = "Quét mã MoMo để thanh toán";
-  document.getElementById("qrImage").src = qr;
-  document.getElementById("qrBox").style.display = "block";
-}
-</script>
-  <script>
-function thanhToan(soTien) {
-
-  const inputs = document.querySelectorAll('input');
-  const sdt = inputs[0].value;
-  const ctv = inputs[1].value;
-
-  if(!sdt){
-    alert("Nhập số điện thoại trước");
-    return;
-  }
-
-  const orderId = "ORD" + Date.now();
-  const noiDung = sdt + " " + ctv;
-
-  const momoLink = `https://nhantien.momo.vn/0346658742?amount=${soTien}&comment=${encodeURIComponent(noiDung)}`;
-
-  document.getElementById("vietqrImg").src =
-    `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(momoLink)}`;
-
-  document.getElementById("orderInfo").innerHTML =
-    "Mã đơn: " + orderId + "<br>" +
-    "Số tiền: " + soTien.toLocaleString() + "đ<br>" +
-    "Nội dung: " + noiDung;
-
-  document.getElementById("qrBox").style.display = "block";
 }
 </script>
 </body>
